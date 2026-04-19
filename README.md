@@ -73,8 +73,8 @@ git clone https://github.com/awdrrawd/d2r-runeword-collection-notes/blob/main/in
 
 | 工具 | 說明 |
 |------|------|
-| [D2R-storehouse](https://github.com/awdrrawd/D2R-storehouse) | 暗黑破壞神 II 倉庫管理工具 |
-| [D2R-TZ-Tracker](https://github.com/awdrrawd/D2R-TZ-Tracker) | 恐懼之地（Terror Zone）追蹤工具 |
+| [D2R-storehouse](https://github.com/awdrrawd/D2R-storehouse) | D2R翻譯倉庫 目前支援Traderie中文化 |
+| [D2R-TZ-Tracker](https://github.com/awdrrawd/D2R-TZ-Tracker) | D2R 邪惡威脅（TZ）追蹤工具 |
 
 ---
 
