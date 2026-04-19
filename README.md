@@ -39,7 +39,7 @@
 - **護甲** — 22 個
 - **盾牌** — 10 個
 
-每個符文之語均標注：符文順序、所需孔數、需求等級、是否天梯限定。
+每個符文之語均標注：符文順序、所需孔數、是否天梯限定。
 
 ---
 
@@ -54,17 +54,10 @@
 ### 方法二：本地使用
 
 ```bash
-git clone https://github.com/awdrrawd/d2r-runeword-collection-notes.git
+git clone https://github.com/awdrrawd/d2r-runeword-collection-notes/blob/main/index.html
 ```
 
 直接用瀏覽器開啟 `index.html` 即可，無需伺服器。
-
-### 方法三：自行部署
-
-由於是單一 HTML 檔案，可部署至任何靜態托管服務：
-- GitHub Pages
-- Cloudflare Pages / Workers
-- Netlify、Vercel 等
 
 ---
 
