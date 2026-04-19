@@ -25,8 +25,9 @@
 ---
 
 ## 📸 截圖
-
-> *(可放置截圖於此)*
+https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG%20(3).jpg
+https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG%20(2).jpg
+https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG%20(1).jpg
 
 ---
 
