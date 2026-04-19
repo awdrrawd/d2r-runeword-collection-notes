@@ -25,9 +25,9 @@
 ---
 
 ## 📸 截圖
-https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG%20(3).jpg
-https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG%20(2).jpg
-https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG%20(1).jpg
+[預覽1](https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG1.jpg)
+[預覽2](https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG2.jpg)
+[預覽3](https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG3.jpg)
 
 ---
 
