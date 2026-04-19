@@ -25,10 +25,9 @@
 ---
 
 ## 📸 截圖
-[預覽1](https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG1.jpg)
-[預覽2](https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG2.jpg)
-[預覽3](https://raw.githubusercontent.com/awdrrawd/d2r-runeword-collection-notes/refs/heads/main/Introduction/IMG3.jpg)
-
+<img src="Introduction/IMG1.jpg" width="800" alt="主畫面">
+<img src="Introduction/IMG2.jpg" width="800" alt="暗色模式">
+<img src="Introduction/IMG3.jpg" width="800" alt="手機模式">
 ---
 
 ## 📦 資料涵蓋範圍
