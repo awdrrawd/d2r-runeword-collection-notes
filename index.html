@@ -14,6 +14,7 @@
   --tx:#c8d4e8;--tx2:#8898b8;--tx3:#b8c3d9;
   --red:#c05050;--grn:#3a7050;--gr2:#5aaa78;
   --lad:#9060c8;--la2:#b888f0;
+  --nld:rgb(231,52,52);--nl2:rgb(255,100,100);
   --run:#ebc862;--ru2:#e8c068;
   --done-bg:#0e1e16;--done-bd:#2a5a38;
   --sh:0 4px 24px rgba(0,0,0,.7);
@@ -62,6 +63,7 @@ aside::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 .fb:hover{border-color:var(--acc);color:var(--ac2)}
 .fb.on{background:var(--acc);border-color:var(--ac2);color:#fff;font-weight:600}
 .fb.onl.on{background:var(--lad);border-color:var(--la2)}
+.fb.onnl.on{background:rgb(231,52,52);border-color:rgb(255,100,100)}
 .fb.onv.on{background:var(--grn);border-color:var(--gr2)}
 
 /* weapon sub hidden by default */
@@ -106,6 +108,8 @@ main::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px}
 .card.dn{background:var(--done-bg);border-color:var(--done-bd);opacity:.72}
 .card.dn::before{background:var(--gr2);opacity:.6}
 .card.ld::before{background:linear-gradient(90deg,var(--lad),var(--la2))}
+.card.nld::before{background:linear-gradient(90deg,var(--nld),var(--nl2))}
+.bnl{background:rgba(231,52,52,.15);border:1px solid rgba(231,52,52,.4);color:rgb(231,52,52)}
 
 /* card header: title left, flag+ladder top-right */
 .ch{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
@@ -320,8 +324,9 @@ const RUNE_IMGS = {"amn_rune.png": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg
   <div class="fg">
     <div class="ft">天梯限定</div>
     <div class="fbs" id="lad-g">
-      <button class="fb on"      data-v="all"  onclick="sf('lad','all',this)">全部</button>
-      <button class="fb onl"     data-v="true" onclick="sf('lad','true',this)">天梯限定</button>
+      <button class="fb on"      data-v="all"    onclick="sf('lad','all',this)">全部</button>
+      <button class="fb onl"     data-v="true"   onclick="sf('lad','true',this)">天梯限定</button>
+      <button class="fb onnl"    data-v="nonlad" onclick="sf('lad','nonlad',this)">非天梯限定</button>
     </div>
   </div>
   <!-- 完成狀態 -->
@@ -418,7 +423,7 @@ const RW=[
   {id:'Oath',               zh:'誓約',    cn:'誓言',    cat:'weapons',wt:['axes','maces','swords'],        s:4,lad:false,runes:['Shael','Pul','Mal','Lum'],lv:49},
   {id:'Venom',              zh:'劇毒',    cn:'毒液',    cat:'weapons',wt:['melee','bows','crossbows'],     s:3,lad:false,runes:['Tal','Dol','Mal'],lv:49},
   {id:'Kingslayer',         zh:'弒王者',  cn:'弑君者',  cat:'weapons',wt:['swords','axes'],                s:4,lad:false,runes:['Mal','Um','Gul','Fal'],lv:53},
-  {id:'Mosaic',             zh:'嵌飾',    cn:'模糊',    cat:'weapons',wt:['katars'],                       s:3,lad:false,runes:['Mal','Gul','Amn'],lv:53},
+  {id:'Mosaic',             zh:'嵌飾',    cn:'模糊',    cat:'weapons',wt:['katars'],                       s:3,lad:'nonlad',runes:['Mal','Gul','Amn'],lv:53},
   {id:'Rift',               zh:'裂隙',    cn:'裂隙',    cat:'weapons',wt:['polearms','scepters'],          s:4,lad:false,runes:['Hel','Ko','Lem','Gul'],lv:53},
   {id:'Death',              zh:'死神',    cn:'殒灭',    cat:'weapons',wt:['swords','axes'],                s:5,lad:false,runes:['Hel','El','Vex','Ort','Gul'],lv:55},
   {id:'Heart of the Oak',   zh:'橡樹之心',cn:'橡树之心', cat:'weapons',wt:['staves','maces'],               s:4,lad:false,runes:['Ko','Vex','Pul','Thul'],lv:55},
@@ -539,6 +544,8 @@ function match(rw){
     if(rw.s>maxS)return false;
   }
   if(lad==='true'&&!rw.lad)return false;
+  if(lad==='true'&&rw.lad==='nonlad')return false;
+  if(lad==='nonlad'&&rw.lad!=='nonlad')return false;
   const done=!!DN[rw.id];
   if(view==='done'&&!done)return false;
   if(view==='undone'&&done)return false;
@@ -706,7 +713,9 @@ function rwEnName(id){return id.replace(/_(sw|sh|w|a|h|s)$/,'');}
 
 function cardHTML(rw){
   const done=!!DN[rw.id];
-  return`<div class="card${done?' dn':''}${rw.lad?' ld':''}">
+  const isLad=rw.lad===true;
+  const isNonLad=rw.lad==='nonlad';
+  return`<div class="card${done?' dn':''}${isLad?' ld':''}${isNonLad?' nld':''}">
     <div class="ch">
       <div class="ch-left">
         <div class="zh">${LANG==='zh-CN'?(rw.cn||rw.zh):rw.zh}<span style="font-size:12px;color:var(--tx2);font-weight:400;margin-left:7px;font-family:'Cinzel',serif">${rwEnName(rw.id)}</span></div>
@@ -716,7 +725,8 @@ function cardHTML(rw){
         </div>
       </div>
       <div class="ch-right">
-        ${rw.lad?'<span class="bg bl">天梯</span>':''}
+        ${isLad?'<span class="bg bl">天梯</span>':''}
+        ${isNonLad?'<span class="bg bnl">非天梯</span>':''}
         <button class="flag-btn" onclick="tog('${rw.id}')" title="${done?'取消完成':'標記完成'}">
           ${flagSVG(done)}
         </button>
@@ -728,10 +738,13 @@ function cardHTML(rw){
 
 function render(){
   const vis=RW.filter(match);
-  const totalDone=Object.keys(DN).filter(id=>RW.find(r=>r.id===id)).length;
-  document.getElementById('sv').textContent=RW.length;
+  // Linked pair secondaries — don't count these toward total
+  const PAIR_SECONDARY=new Set(['Dragon_s','Phoenix_s','Spirit_sh','Dream_s','Fortitude_a']);
+  const totalCount=RW.filter(r=>!PAIR_SECONDARY.has(r.id)).length;
+  const totalDone=Object.keys(DN).filter(id=>RW.find(r=>r.id===id)&&!PAIR_SECONDARY.has(id)).length;
+  document.getElementById('sv').textContent=totalCount;
   document.getElementById('sd').textContent=totalDone;
-  document.getElementById('sn').textContent=RW.length-totalDone;
+  document.getElementById('sn').textContent=totalCount-totalDone;
   document.getElementById('cards').innerHTML=vis.length
     ?vis.map(cardHTML).join('')
     :'<div class="nores">😔 沒有符合條件的符文之語</div>';
@@ -756,8 +769,22 @@ function renderSum(){
   ).join('');
 }
 
+// Cross-category linked pairs (completing one completes the other)
+const LINKED_PAIRS={
+  'Dragon_a':'Dragon_s','Dragon_s':'Dragon_a',
+  'Phoenix_w':'Phoenix_s','Phoenix_s':'Phoenix_w',
+  'Spirit_sw':'Spirit_sh','Spirit_sh':'Spirit_sw',
+  'Dream_h':'Dream_s','Dream_s':'Dream_h',
+  'Fortitude_w':'Fortitude_a','Fortitude_a':'Fortitude_w',
+};
+
 function tog(id){
   if(DN[id])delete DN[id];else DN[id]=true;
+  // sync linked pair
+  const pair=LINKED_PAIRS[id];
+  if(pair){
+    if(DN[id])DN[pair]=true;else delete DN[pair];
+  }
   save();render();
 }
 
