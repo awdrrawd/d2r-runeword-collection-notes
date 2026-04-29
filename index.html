@@ -752,7 +752,8 @@ function render(){
 }
 
 function renderSum(){
-  const undone=RW.filter(r=>!DN[r.id]);
+  const PAIR_SECONDARY=new Set(['Dragon_s','Phoenix_s','Spirit_sh','Dream_s','Fortitude_a']);
+  const undone=RW.filter(r=>!DN[r.id]&&!PAIR_SECONDARY.has(r.id));
   const cnt={};
   undone.forEach(rw=>rw.runes.forEach(r=>{cnt[r]=(cnt[r]||0)+1;}));
   const need=RUNES.filter(r=>cnt[r.id]>0);
@@ -792,16 +793,18 @@ function tog(id){
 // EXPORT / IMPORT
 // ═══════════════════════════════════════════════
 function doExport(){
-  const undone=RW.filter(r=>!DN[r.id]);
+  const PAIR_SECONDARY=new Set(['Dragon_s','Phoenix_s','Spirit_sh','Dream_s','Fortitude_a']);
+  const undone=RW.filter(r=>!DN[r.id]&&!PAIR_SECONDARY.has(r.id));
   const cnt={};
   undone.forEach(rw=>rw.runes.forEach(r=>{cnt[r]=(cnt[r]||0)+1;}));
   const needRunes=RUNES.filter(r=>cnt[r.id]>0);
 
+  const totalCount=RW.filter(r=>!PAIR_SECONDARY.has(r.id)).length;
   let t='══════════════════════════════════════\n';
   t+='   D2R 符文之語進度報告\n';
   t+='══════════════════════════════════════\n';
   t+=`匯出時間：${new Date().toLocaleString('zh-TW')}\n`;
-  t+=`進度：已完成 ${RW.length-undone.length} / ${RW.length}\n\n`;
+  t+=`進度：已完成 ${totalCount-undone.length} / ${totalCount}\n\n`;
 
   t+='── 剩餘符文組 ──────────────────────\n';
   t+=`尚有 ${undone.length} 個符文之語未完成\n\n`;
